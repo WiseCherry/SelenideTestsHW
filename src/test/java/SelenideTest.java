@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.devtools.v136.page.model.Screenshot;
 
 import java.io.File;
 import java.time.Duration;
@@ -16,7 +17,7 @@ import static com.codeborne.selenide.files.DownloadActions.click;
 
 public class SelenideTest {
 
-       @BeforeAll
+    @BeforeAll
     static void beforeAll() {
         Configuration.browser = "chrome";
         Configuration.browserSize = "1920х1080";
@@ -40,5 +41,6 @@ public class SelenideTest {
     @AfterAll
     static void afterAll() {
         Selenide.sleep(5000);
+        screenshot("screen1");
     }
 }

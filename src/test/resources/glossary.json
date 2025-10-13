@@ -1,0 +1,10 @@
+{
+  "title": "example glossary",
+  "ID": 3256,
+  "GlossDiv": {
+    "SortAs": "SGML",
+    "GlossTerm": "Standard Generalized Markup Language",
+    "Acronym": "SGML"
+  }
+}
+

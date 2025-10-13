@@ -3,6 +3,7 @@ package pages;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
+import pages.components.TestData;
 
 import java.security.PublicKey;
 
@@ -11,10 +12,12 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static pages.components.TestData.*;
 
 public class RegistrationPage {
 
     CalendarComponent calendarComponent = new CalendarComponent();
+    TestData testData = new TestData();
 
     public static SelenideElement firstNameLocator = $("#firstName");
     public static SelenideElement lastNameLocator = $("#lastName");
@@ -29,6 +32,7 @@ public class RegistrationPage {
     public static SelenideElement subjectLocator = $("#subjectsInput");
     public static SelenideElement hobbieLocator = $("#hobbiesWrapper");
     public static SelenideElement fileUploaderLocator = $("#uploadPicture");
+    public static SelenideElement currentAddressLocator = $("#currentAddress");
     public static SelenideElement stateLocator = $("#state");
     public static SelenideElement stateCityLocator = $("#stateCity-wrapper");
     public static SelenideElement cityLocator = $("#city");
@@ -105,6 +109,11 @@ public class RegistrationPage {
         return this;
     }
 
+    public RegistrationPage setCurrentAddress(String value) {
+        $(currentAddressLocator).setValue(value);
+        return this;
+    }
+
     public RegistrationPage setState (String value) {
         stateLocator.click();
         stateCityLocator.$(byText(value)).click();
@@ -133,11 +142,11 @@ public class RegistrationPage {
     }
 
     public RegistrationPage formAsserts () {
-        $(".table-responsive").shouldHave(text("John Shepard"),
-                text("normandy@gmail.com"), text("Male"),
-                text("9271117711"), text("30 July,1985"), text("Economics"),
-                text("Sports"), text("1.png"), text("Malibu 42 Baker St. 66"),
-                text("Haryana Panipat"));
+        $(".table-responsive").shouldHave(text(firstName + " " + lastName),
+                text(email), text("Male"),
+                text(phoneNumber), text("30 July,1985"), text(subject),
+                text(hobbie), text(testFile), text(currentAddress),
+                text(state + " " + city));
 
         return this;
     }
